@@ -1,0 +1,9 @@
+##Clone the repo and open set up the model
+import streamlit as st
+import pandas as pd
+st.write("""
+#Facial Editing Detector#
+""")
+image = st.file_uploader("Select an image", type = [‘png’, ‘jpg’])
+if image is not None:
+    byes_date = uploaded
