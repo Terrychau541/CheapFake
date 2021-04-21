@@ -15,10 +15,10 @@ def load_classifier(model_path, gpu_id):
         device = 'cuda:{}'.format(gpu_id)
     else:
         device = 'cpu'
-    model = DRNSub(2)
+    model = torch.nn.DataParallel(DRNSub(2))
     model.to(device)
     state_dict = torch.load(model_path, map_location='cpu')
-    model.load_state_dict(state_dict['state_dict'], strict=False)
+    model.load_state_dict(state_dict['state_dict'])
     model.device = device
     model.eval()
     return model
@@ -52,8 +52,11 @@ def classify_fake(image, no_crop=False, model_path = 'weights/model_best.pth.tar
     # Prediction
     with torch.no_grad():
         sm = torch.nn.Softmax()
-        output = sm(model(face_tens.unsqueeze(0)))
-        prob = output.numpy()[0][0]
+        output = model(face_tens.unsqueeze(0))
+        print(output)
+        prob = sm(output).numpy()[0][0]
+
+
     return prob
 
 
