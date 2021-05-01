@@ -33,7 +33,7 @@ tf = transforms.Compose([
             transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                  std=[0.229, 0.224, 0.225])])
 
-def classify_fake(image, no_crop=False, model_path = 'models/combined.pth.tar', gpu_id =0,
+def classify_fake(image,model_path, no_crop=False, gpu_id =0 ,
                   model_file='utils/dlib_face_detector/mmod_human_face_detector.dat'):
     # Data preprocessing
     model = load_classifier(model_path, gpu_id)
