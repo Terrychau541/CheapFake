@@ -29,7 +29,7 @@ st.markdown('To use the interface, simply select a CheapFake characteristic from
 
 select = st.selectbox('Select Type of CheapFake', ["Comprehensive", "Facial Feature Editing" , "Skin smoothing", "Skintone Changing"])
 
-image = st.file_uploader("Select an image", type = ["png", "jpg, jpeg"])
+image = st.file_uploader("Select an image", type = ["png", "jpg", "jpeg"])
 
 if image is not None:
     st.image(image)
